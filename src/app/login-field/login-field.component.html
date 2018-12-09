@@ -1,0 +1,28 @@
+<div class="root">
+  <div class="header">
+    <table class="rounded-corners">
+      <tr>
+        <td colspan="2"><h1>Лабораторная работа №4</h1></td>
+      </tr>
+      <tr>
+        <td colspan="2"><h2>Подготовил Шилко Даниил Сергеевич</h2></td>
+      </tr>
+      <tr>
+        <td><h3 class="right-header">Группа: Р3201</h3></td>
+        <td><h3 class="left-header">Вариант: 18132</h3></td>
+      </tr>
+    </table>
+  </div>
+  <h1>{{header}}</h1>
+  <form [action]="formAction">
+    <label for="login">{{login}}</label>
+    <input [(ngModel)]="usernameField" id="login" name="login"/>
+    <br/>
+    <label for="password">{{password}}</label>
+    <input [(ngModel)]="passwordField" id="password" name="password" type="password"/>
+    <br/>
+    <div>{{queryInfo}}</div>
+    <button id="submitButton" (click)="submit()" type="submit">{{submitButton}}</button>
+    <button id="switchRole" (click)="switchRole()" type="button">{{switchButton}}</button>
+  </form>
+</div>

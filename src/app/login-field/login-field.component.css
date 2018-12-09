@@ -1,0 +1,68 @@
+.root {
+  background: #549eac; /* #69eafc*/
+  text-align: center;
+  color: #e9a500;
+  text-shadow: 1px 1px 2px #FF1300;
+  font-size: medium;
+}
+
+button {
+  height: 40px;
+  width: 200px;
+  border-radius: 15px;
+  border: 3px solid #03799D;
+  background-color: #03899C;
+  color: #FFAE00;
+  outline: none;
+  text-shadow: 1px 1px 2px #FF1300;
+  font-weight: bold;
+  margin-right: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+  font-size: small;
+  horiz-align: center;
+}
+
+button:active {
+  background-color: #5FC0CE;
+}
+
+input {
+  margin-bottom: 10px;
+}
+
+.header {
+  color: #FFAE00;
+  text-shadow: 1px 1px 2px #FF1300;
+  font-size: medium;
+}
+
+.header > table {
+  background-color: #03899C;
+  width: 100%;
+  line-height: 0;
+  min-width: 450px;
+}
+
+table.rounded-corners {
+  border-radius: 50px;
+  border: 3px solid #03799D; /*background-color - #FFF*/
+}
+
+.header > table td {
+  text-align: center;
+}
+
+.left-header {
+  text-align: left;
+  padding-left: 2%;
+}
+
+.right-header {
+  text-align: right;
+  padding-right: 2%;
+}
+
+.header h3 {
+  font-style: italic;
+}
