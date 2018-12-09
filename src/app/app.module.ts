@@ -7,11 +7,13 @@ import { AppComponent } from './app.component';
 import { LoginFieldComponent } from './login-field/login-field.component';
 import {UserLoginService} from './user-login/user-login.service';
 import {FormsModule} from '@angular/forms';
+import { CheckComponent } from './check/check.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginFieldComponent
+    LoginFieldComponent,
+    CheckComponent
   ],
   imports: [
     BrowserModule,
