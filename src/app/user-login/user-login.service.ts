@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
+import {CookieService} from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,12 +9,13 @@ export class UserLoginService {
 
   private isLogged = false;
 
-  constructor(private _http: HttpClient) {
+  constructor(private _http: HttpClient,
+              private _cookieService: CookieService) {
   }
 
   disableSession() {
     this._http.get('http://localhost:8080/results/disablesession', {responseType: 'text'});
-    sessionStorage.clear();
+    this._cookieService.delete('sessionID');
     this.isLogged = false;
   }
 

@@ -1,0 +1,120 @@
+body {
+  background: #5FC0CE; /* #69eafc*/
+}
+
+header {
+  color: #FFAE00;
+  text-shadow: 1px 1px 2px #FF1300;
+  font-size: medium;
+}
+
+header > table {
+  background-color: #03899C;
+  width: 100%;
+  line-height: 0;
+  min-width: 450px;
+}
+
+table.rounded-corners {
+  border-radius: 50px;
+  border: 3px solid #03799D; /*background-color - #FFF*/
+}
+
+header > table td {
+  text-align: center;
+}
+
+.left-header {
+  text-align: left;
+  padding-left: 2%;
+}
+
+.right-header {
+  text-align: right;
+  padding-right: 2%;
+}
+
+header h3 {
+  font-style: italic;
+}
+
+article table {
+  width: 100%;
+  text-align: center;
+  /*line-height: 0;*/
+}
+
+article td {
+  empty-cells: show;
+}
+
+article span.param {
+  font-style: italic;
+  font-weight: bold;
+}
+
+article span.check-text {
+  color: #925c00;
+  font-weight: bold;
+}
+
+article .param-button {
+  width: 95%;
+  height: 100%;
+  padding: 5% 0 5% 0;
+  cursor: pointer;
+}
+
+article .param-button:disabled {
+  background-color: #03899C;
+  color: #FFAE00;
+  border-radius: 10px;
+  border: 2px solid #03799D;
+}
+
+article [name*='param-x'] {
+  min-width: 160px;
+}
+
+#canvas:hover {
+  cursor: pointer;
+}
+
+article span#yes {
+  color: #009000;
+  font-weight: bold;
+}
+
+article span#no {
+  color: #aa2223;
+  font-weight: bold;
+}
+
+canvas#canvas {
+  display: block;
+  margin: 0 auto;
+  transition: transform ease-in-out 1s;
+}
+
+.check-button {
+  height: 30px;
+  width: 200px;
+  border-radius: 15px;
+  border: 3px solid #03799D;
+  background-color: #03899C;
+  color: #FFAE00;
+  padding-right: 3px;
+  padding-left: 3px;
+  outline: none;
+  text-shadow: 1px 1px 2px #FF1300;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.check-button:active {
+  background-color: #5FC0CE;
+}
+
+.article-table {
+  background-color: #21cfda;
+}

@@ -1,0 +1,118 @@
+<article>
+  <br/>
+  <table>
+    <tr>
+      <td colspan="2">
+        <div id="description">Эта страница предназначена для проверки
+          вхождения точки с координатами <span class="param">X</span>
+          и <span class="param">Y</span> в область,
+          отмеченную на графике синим цветом. Для начала работы
+          выберите нужные значения <span class="param">X</span>, <span class="param">Y</span>,
+          параметра <span class="param">R</span>
+          и нажмите на <span class="check-text">График</span>.
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <form id="form">
+          <fieldset>
+            <legend style="text-align: left;"><span class="check-text">Данные для проверки</span>
+            </legend>
+            <table rules="groups">
+              <thead>
+              <tr>
+                <th colspan="3">
+                <th>
+              </tr>
+              </thead>
+              <colgroup>
+                <col/>
+              </colgroup>
+              <colgroup>
+                <col/>
+              </colgroup>
+              <colgroup>
+                <col/>
+              </colgroup>
+              <tbody>
+              <tr>
+                <td width="33%">
+                  Параметр <span class="param">Y</span>
+                </td>
+                <td width="33%">
+                  Координата <span class="param">R</span>
+                </td>
+                <td width="33%">
+                  Координата <span class="param">X</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input name="param-y" title="Целое или дробное число"
+                         placeholder="Введите число от 1 до 4"
+                         maxlength="16" [(ngModel)]="y"/>
+                </td>
+                <td>
+                  <p-spinner [min]="0.5" [max]="2" [step]="0.5" name="param-r"
+                             title="Одно из значений: 0.5, 1, 1.5, 2"
+                             [(ngModel)]="r" (change)="drawPoints()">
+                  </p-spinner>
+                </td>
+                <td>
+                  <p-spinner [min]="-2" [max]="2" [step]="0.5" name="param-x"
+                             title="Одно из значений: -2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2"
+                             [(ngModel)]="x">
+                  </p-spinner>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="error">
+                    {{yError}}
+                  </span>
+                </td>
+                <td>
+                  <span class="error">
+                    {{rError}}
+                  </span>
+                </td>
+                <td>
+                  <span class="error">
+                    {{xError}}
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+
+                </td>
+                <td>
+                  <button (click)="check()">Проверить</button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </fieldset>
+        </form>
+      </td>
+    </tr>
+  </table>
+  <br/>
+  <div align="center">
+    <button (click)="disableSession()">Выйти на главную</button>
+  </div>
+
+  <p align="center"><span class="check-text">График области:</span></p>
+  <canvas id="canvas" (click)="canvasSubmit($event)" title="График области" width="400px" height="400px"></canvas>
+  <br/>
+  <p-dataTable [value]="results"
+               styleClass="article-table"
+               rules="all" id="result-table"
+               emptyMessage="Здесь будут отображены добавленные точки">
+    <p-column field="x" header="X" [sortable]="true"></p-column>
+    <p-column field="y" header="Y" [sortable]="true"></p-column>
+    <p-column field="r" header="R" [sortable]="true"></p-column>
+    <p-column field="match" header="Попадание" [sortable]="true"></p-column>
+  </p-dataTable>
+</article>

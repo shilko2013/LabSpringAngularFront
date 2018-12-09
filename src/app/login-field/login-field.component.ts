@@ -1,6 +1,8 @@
 import {Component, Injectable, OnInit} from '@angular/core';
 import {UserLoginService} from '../user-login/user-login.service';
 import {Router} from '@angular/router';
+import {HttpClient} from '@angular/common/http';
+import {CookieService} from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login-field',
@@ -31,10 +33,19 @@ export class LoginFieldComponent implements OnInit {
   public queryInfo = '';
 
   constructor(private _userLoginService: UserLoginService,
-              private _router: Router) {
+              private _router: Router,
+              private _cookieService: CookieService) {
   }
 
   ngOnInit() {
+    this._cookieService.set('sessionID', this.newGuid());
+  }
+
+  newGuid() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+      const r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
   }
 
   switchRole() {

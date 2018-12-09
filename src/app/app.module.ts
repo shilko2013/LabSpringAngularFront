@@ -5,9 +5,13 @@ import { HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginFieldComponent } from './login-field/login-field.component';
-import {UserLoginService} from './user-login/user-login.service';
-import {FormsModule} from '@angular/forms';
+import { UserLoginService } from './user-login/user-login.service';
+import { FormsModule } from '@angular/forms';
 import { CheckComponent } from './check/check.component';
+import { SpinnerModule } from 'primeng/spinner';
+import { DataTableModule } from 'primeng/datatable';
+import { ButtonModule } from 'primeng/button';
+import {CookieService} from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -19,9 +23,14 @@ import { CheckComponent } from './check/check.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    SpinnerModule,
+    DataTableModule,
+    ButtonModule
   ],
-  providers: [UserLoginService],
+  providers: [UserLoginService,
+    CookieService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
