@@ -50,13 +50,13 @@
               <tr>
                 <td>
                   <input name="param-y" title="Целое или дробное число"
-                         placeholder="Введите число от 1 до 4"
+                         placeholder="Введите число от -5 до 3"
                          maxlength="16" [(ngModel)]="y"/>
                 </td>
                 <td>
                   <p-spinner [min]="0.5" [max]="2" [step]="0.5" name="param-r"
                              title="Одно из значений: 0.5, 1, 1.5, 2"
-                             [(ngModel)]="r" (change)="drawPoints()">
+                             [(ngModel)]="r" (onChange)="drawPoints()">
                   </p-spinner>
                 </td>
                 <td>
@@ -88,7 +88,10 @@
 
                 </td>
                 <td>
-                  <button (click)="check()">Проверить</button>
+                  <button (click)="submit()">Проверить</button>
+                </td>
+                <td>
+
                 </td>
               </tr>
               </tbody>
@@ -113,6 +116,6 @@
     <p-column field="x" header="X" [sortable]="true"></p-column>
     <p-column field="y" header="Y" [sortable]="true"></p-column>
     <p-column field="r" header="R" [sortable]="true"></p-column>
-    <p-column field="match" header="Попадание" [sortable]="true"></p-column>
+    <p-column field="checking" header="Попадание" [sortable]="true"></p-column>
   </p-dataTable>
 </article>

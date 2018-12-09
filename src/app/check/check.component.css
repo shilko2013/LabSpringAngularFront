@@ -96,7 +96,7 @@ canvas#canvas {
   transition: transform ease-in-out 1s;
 }
 
-.check-button {
+button {
   height: 30px;
   width: 200px;
   border-radius: 15px;
@@ -111,10 +111,11 @@ canvas#canvas {
   cursor: pointer;
 }
 
-.check-button:active {
+button:active {
   background-color: #5FC0CE;
 }
 
 .article-table {
+  width: 100%;
   background-color: #21cfda;
 }

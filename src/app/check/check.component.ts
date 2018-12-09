@@ -3,6 +3,14 @@ import {UserLoginService} from '../user-login/user-login.service';
 import {Router} from '@angular/router';
 import {ResultService} from '../result/result.service';
 
+
+interface Result {
+  x: number;
+  y: number;
+  r: number;
+  checking: string;
+}
+
 @Component({
   selector: 'app-check',
   templateUrl: './check.component.html',
@@ -29,6 +37,15 @@ export class CheckComponent implements OnInit {
 
   ngOnInit() {
     this.drawPoints();
+    this.getResults();
+  }
+
+  getResults() {
+    this._resultService.getPoints()
+      .subscribe((data: Array<Result>) => {
+        this.results = data;
+        this.drawPoints();
+      });
   }
 
   disableSession() {
@@ -44,13 +61,13 @@ export class CheckComponent implements OnInit {
   check() {
     this.unsetErrors();
     const yVal = Number(String(this.y).replace(',', '.'));
-    if (yVal < -5 || yVal > 3) {
+    if (isNaN(yVal) || yVal < -5 || yVal > 3) {
       this.yError = 'Неверное значение Y';
       this.y = '';
       return false;
     }
     if (![-2, -1.5, -1, -0.5, -0, 0.5, 1, 1.5, 2].includes(this.x)) {
-      this.xError = 'Неверное значение Y';
+      this.xError = 'Неверное значение X';
       this.x = 0;
       return false;
     }
@@ -63,7 +80,7 @@ export class CheckComponent implements OnInit {
 
   getCustomR() {
     const result = this.r * this.canvasR;
-    if (isNaN(result) || result < this.canvasR || result > this.canvasR * 2) {
+    if (isNaN(result)) {
       return this.canvasR;
     } else {
       return result;
@@ -80,7 +97,7 @@ export class CheckComponent implements OnInit {
     if (this.x > 2) {
       this.x = 3;
     }
-    this.x = (Math.round(this.y * 2) * 1.) / 2;
+    this.x = (Math.round(this.x * 2) * 1.) / 2;
     this.submit();
   }
 
@@ -88,10 +105,9 @@ export class CheckComponent implements OnInit {
     if (!this.check()) {
       return;
     }
-    this._resultService.addPoint(this.x, this.y, this.r, )
+    this._resultService.addPoint(this.x, this.y, this.r)
       .subscribe(() => {
-        this._resultService.getPoints()
-          .subscribe(data => this.results = Array.of(data));
+        this.getResults();
       }, () => {
         this.rError = 'Ошибка отправки запроса!';
       });
@@ -123,12 +139,12 @@ export class CheckComponent implements OnInit {
     const values = this.results;
     if (values.length > 0) {
       for (let i = 0; i < values.length; ++i) {
-        allPointExist = allPointExist && this.drawPoint(ctx,
+        allPointExist = this.drawPoint(ctx,
           values[i].x,
           values[i].y,
           values[i].r,
           values[i].checking,
-          undefined);
+          undefined) && allPointExist;
       }
     }
 
@@ -143,7 +159,7 @@ export class CheckComponent implements OnInit {
     if (color) {
       ctx.fillStyle = color;
     } else if (!match) {
-      ctx.fillStyle = '#FFAE00';
+      ctx.fillStyle = '#ff5b32';
     } else {
       ctx.fillStyle = '#00D300';
     }
