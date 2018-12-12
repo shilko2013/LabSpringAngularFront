@@ -1,13 +1,11 @@
-import {Injectable} from '@angular/core';
+import {Injectable, OnInit} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {CookieService} from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserLoginService {
-
-  private isLogged = false;
+export class UserLoginService implements OnInit {
 
   constructor(private _http: HttpClient,
               private _cookieService: CookieService) {
@@ -16,7 +14,7 @@ export class UserLoginService {
   disableSession() {
     this._http.get('http://localhost:8080/results/disablesession', {responseType: 'text'});
     this._cookieService.delete('sessionID');
-    this.isLogged = false;
+    sessionStorage.setItem('isLogged', '');
   }
 
   register(username, password) {
@@ -27,12 +25,16 @@ export class UserLoginService {
   login(username, password) {
     const params = new HttpParams().set('username', username).set('password', password);
     const query = this._http.post('http://localhost:8080/login', params, {responseType: 'text'}).toPromise();
-    query.then(() => this.isLogged = true);
+    query.then(() => sessionStorage.setItem('isLogged', 'true'));
     return query;
   }
 
-  isLoggedIn() {
-    return this.isLogged;
+  isLoggedIn(): boolean {
+    return !!sessionStorage.getItem('isLogged');
+  }
+
+  ngOnInit(): void {
+    sessionStorage.setItem('isLogged', '');
   }
 
 }

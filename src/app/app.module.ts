@@ -28,7 +28,8 @@ import {CookieService} from 'ngx-cookie-service';
     DataTableModule,
     ButtonModule
   ],
-  providers: [UserLoginService,
+  providers: [
+    UserLoginService,
     CookieService
   ],
   bootstrap: [AppComponent]
