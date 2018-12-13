@@ -13,6 +13,7 @@ import { DataTableModule } from 'primeng/datatable';
 import { ButtonModule } from 'primeng/button';
 import {CookieService} from 'ngx-cookie-service';
 import {ResultService} from './result/result.service';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {ResultService} from './result/result.service';
     FormsModule,
     SpinnerModule,
     DataTableModule,
-    ButtonModule
+    ButtonModule,
+    NgbModule
   ],
   providers: [
     UserLoginService,
