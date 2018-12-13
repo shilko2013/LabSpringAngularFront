@@ -12,6 +12,7 @@ import { SpinnerModule } from 'primeng/spinner';
 import { DataTableModule } from 'primeng/datatable';
 import { ButtonModule } from 'primeng/button';
 import {CookieService} from 'ngx-cookie-service';
+import {ResultService} from './result/result.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {CookieService} from 'ngx-cookie-service';
   ],
   providers: [
     UserLoginService,
-    CookieService
+    CookieService,
+    ResultService
   ],
   bootstrap: [AppComponent]
 })

@@ -7,34 +7,37 @@ import {CookieService} from 'ngx-cookie-service';
 })
 export class UserLoginService implements OnInit {
 
+  private isLogged = false;
+
   constructor(private _http: HttpClient,
               private _cookieService: CookieService) {
   }
 
   disableSession() {
-    this._http.get('http://localhost:8080/results/disablesession', {responseType: 'text'});
+    this._http.get('http://localhost:15880/results/disablesession?sessionID=' + this._cookieService.get('sessionID'),
+      {responseType: 'text'});
     this._cookieService.delete('sessionID');
-    sessionStorage.setItem('isLogged', '');
+    this.isLogged = false;
   }
 
   register(username, password) {
     const params = new HttpParams().set('username', username).set('password', password);
-    return this._http.post('http://localhost:8080/registration', params, {responseType: 'text'});
+    return this._http.post('http://localhost:15880/registration', params, {responseType: 'text'});
   }
 
   login(username, password) {
     const params = new HttpParams().set('username', username).set('password', password);
-    const query = this._http.post('http://localhost:8080/login', params, {responseType: 'text'}).toPromise();
-    query.then(() => sessionStorage.setItem('isLogged', 'true'));
+    const query = this._http.post('http://localhost:15880/login', params, {responseType: 'text'}).toPromise();
+    query.then(() => this.isLogged = true);
     return query;
   }
 
   isLoggedIn(): boolean {
-    return !!sessionStorage.getItem('isLogged');
+    return this.isLogged;
   }
 
   ngOnInit(): void {
-    sessionStorage.setItem('isLogged', '');
+    this.isLogged = false;
   }
 
 }
